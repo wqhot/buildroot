@@ -1,5 +1,5 @@
 config BR2_PACKAGE_MULTIVIDEOPLAYER
-	bool "multivideo player"
+	bool "jss recovery"
 	depends on BR2_PACKAGE_QT5
 	help
-	  Rockchip multivideo player application based on Qt
+	  jss recovery tools

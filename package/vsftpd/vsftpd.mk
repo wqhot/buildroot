@@ -46,7 +46,7 @@ define VSFTPD_BUILD_CMDS
 endef
 
 define VSFTPD_USERS
-	ftp -1 ftp -1 * /home/ftp - - Anonymous FTP User
+	ftp -1 ftp -1 * /Backup - - Anonymous FTP User
 endef
 
 define VSFTPD_INSTALL_INIT_SYSTEMD
@@ -68,7 +68,17 @@ define VSFTPD_INSTALL_TARGET_CMDS
 		$(INSTALL) -D -m 644 $(@D)/vsftpd.conf \
 			$(TARGET_DIR)/etc/vsftpd.conf
 	$(INSTALL) -d -m 700 $(TARGET_DIR)/usr/share/empty
-	$(INSTALL) -d -m 555 $(TARGET_DIR)/home/ftp
+	# 创建 Backup 目录并设置适当的权限
+    $(INSTALL) -d -m 777 $(TARGET_DIR)/Backup
+    # 修改 vsftpd.conf 中的配置
+    $(SED) 's|/home/ftp|/Backup|g' $(TARGET_DIR)/etc/vsftpd.conf
+    # 添加必要的配置选项
+	echo "anon_upload_enable=YES" >> $(TARGET_DIR)/etc/vsftpd.conf
+    echo "anon_mkdir_write_enable=YES" >> $(TARGET_DIR)/etc/vsftpd.conf
+	echo "anon_other_write_enable=YES" >> $(TARGET_DIR)/etc/vsftpd.conf
+	echo "write_enable=YES" >> $(TARGET_DIR)/etc/vsftpd.conf
+    echo "allow_writeable_chroot=YES" >> $(TARGET_DIR)/etc/vsftpd.conf
+    echo "local_umask=022" >> $(TARGET_DIR)/etc/vsftpd.conf
 endef
 
 $(eval $(generic-package))

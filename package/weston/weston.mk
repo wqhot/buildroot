@@ -38,12 +38,12 @@ endif # BR2_PACKAGE_WESTON_SIMPLE_CLIENTS
 
 WESTON_CONF_OPTS += -Dsimple-clients=$(subst $(space),$(comma),$(strip $(WESTON_SIMPLE_CLIENTS)))
 
-ifeq ($(BR2_PACKAGE_JPEG),y)
-WESTON_CONF_OPTS += -Dimage-jpeg=true
-WESTON_DEPENDENCIES += jpeg
-else
+# ifeq ($(BR2_PACKAGE_JPEG),y)
+# WESTON_CONF_OPTS += -Dimage-jpeg=true
+# WESTON_DEPENDENCIES += jpeg
+# else
 WESTON_CONF_OPTS += -Dimage-jpeg=false
-endif
+# endif
 
 ifeq ($(BR2_PACKAGE_WEBP),y)
 WESTON_CONF_OPTS += -Dimage-webp=true

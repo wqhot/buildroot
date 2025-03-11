@@ -17,6 +17,17 @@ define IFUPDOWN_SCRIPTS_LOCALHOST
 	) >> $(TARGET_DIR)/etc/network/interfaces
 endef
 
+define IFUPDOWN_SCRIPTS_STATIC_IP
+    ( \
+        echo ; \
+        echo "auto eth0"; \
+        echo "iface eth0 inet static"; \
+        echo "  address 192.9.200.99"; \
+        echo "  netmask 255.255.255.0"; \
+        echo "  pre-up /etc/network/nfs_check"; \
+    ) >> $(TARGET_DIR)/etc/network/interfaces
+endef
+
 IFUPDOWN_SCRIPTS_DHCP_IFACE = $(call qstrip,$(BR2_SYSTEM_DHCP))
 
 ifneq ($(IFUPDOWN_SCRIPTS_DHCP_IFACE),)
@@ -55,6 +66,7 @@ define IFUPDOWN_SCRIPTS_INSTALL_INIT_SYSV
 		$(TARGET_DIR)/etc/init.d/S40network
 	$(IFUPDOWN_SCRIPTS_PREAMBLE)
 	$(IFUPDOWN_SCRIPTS_LOCALHOST)
+	${IFUPDOWN_SCRIPTS_STATIC_IP}
 	$(IFUPDOWN_SCRIPTS_DHCP)
 endef
 
@@ -66,6 +78,7 @@ define IFUPDOWN_SCRIPTS_INSTALL_INIT_SYSTEMD
 		$(TARGET_DIR)/etc/systemd/system/network.service
 	$(IFUPDOWN_SCRIPTS_PREAMBLE)
 	$(IFUPDOWN_SCRIPTS_LOCALHOST)
+	$(IFUPDOWN_SCRIPTS_STATIC_IP)
 	$(IFUPDOWN_SCRIPTS_DHCP)
 endef
 
