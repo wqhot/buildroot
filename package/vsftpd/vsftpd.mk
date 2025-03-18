@@ -46,7 +46,7 @@ define VSFTPD_BUILD_CMDS
 endef
 
 define VSFTPD_USERS
-	ftp -1 ftp -1 * /Backup - - Anonymous FTP User
+	ftp -1 root -1 * /Backup - - Anonymous FTP User
 endef
 
 define VSFTPD_INSTALL_INIT_SYSTEMD

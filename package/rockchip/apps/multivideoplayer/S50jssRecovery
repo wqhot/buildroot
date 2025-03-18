@@ -28,8 +28,8 @@ stop_qlauncher()
 case "$1" in
 	start)
 		echo "starting qlauncher... "
+		chown -R ftp:root /Backup/upload
 		start_qlauncher&
-		chown ftp:ftp /Backup
 		;;
 	stop)
 		echo -n "stoping qlauncher... "
