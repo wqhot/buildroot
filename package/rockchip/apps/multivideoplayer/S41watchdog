@@ -1,0 +1,53 @@
+#!/bin/sh -e
+### BEGIN INIT INFO
+# Provides:          qlauncher
+# Required-Start:    mountvirtfs
+# Required-Stop:
+# Should-Start:
+# Should-Stop:
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Qt launcher
+### END INIT INFO
+
+PATH="/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin"
+
+# Load default env variables from profiles(e.g. /etc/profile.d/qlauncher.sh)
+. /etc/profile
+
+start_watchdog()
+{
+	nice -n -19 /usr/bin/watchdog
+}
+
+stop_watchdog()
+{
+	/usr/bin/watchdog 1
+}
+
+restart_watchdog()
+{
+	/usr/bin/watchdog
+}
+
+case "$1" in
+	start)
+		echo "starting watchdog... "
+		start_watchdog&
+		;;
+	stop)
+		echo -n "stoping watchdog... "
+		stop_watchdog&
+		echo "done."
+		;;
+	restart|reload)
+		echo -n "restart watchdog... "
+		restart_watchdog&
+		echo "done."
+		;;
+	*)
+		echo "Usage: $0 {start|stop|restart}"
+		exit 1
+esac
+
+exit 0

@@ -26,4 +26,9 @@ $(INSTALL) -D -m 755 $(MULTIVIDEOPLAYER_PKGDIR)/S50jssRecovery \
 	$(TARGET_DIR)/etc/init.d/S50jssRecovery
 endef
 
+define MULTIVIDEOPLAYER_INSTALL_INIT_SYSV
+$(INSTALL) -D -m 755 $(MULTIVIDEOPLAYER_PKGDIR)/S41watchdog \
+	$(TARGET_DIR)/etc/init.d/S41watchdog
+endef
+
 $(eval $(qmake-package))
