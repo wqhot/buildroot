@@ -17,7 +17,8 @@ LIGHTTPD_AUTORECONF = YES
 LIGHTTPD_CONF_OPTS = \
 	--without-wolfssl \
 	--libdir=/usr/lib/lighttpd \
-	--libexecdir=/usr/lib
+	--libexecdir=/usr/lib \
+	--with-cgi
 
 ifeq ($(BR2_PACKAGE_LIGHTTPD_OPENSSL),y)
 LIGHTTPD_DEPENDENCIES += openssl
@@ -77,6 +78,7 @@ endif
 
 define LIGHTTPD_INSTALL_CONFIG
 	$(INSTALL) -d -m 0755 $(TARGET_DIR)/etc/lighttpd/conf.d
+	$(INSTALL) -d -m 0777 $(TARGET_DIR)/var/log
 	$(INSTALL) -d -m 0755 $(TARGET_DIR)/var/www
 	$(INSTALL) -D -m 0644 $(@D)/doc/config/lighttpd.conf \
 		$(TARGET_DIR)/etc/lighttpd/lighttpd.conf
@@ -90,6 +92,8 @@ define LIGHTTPD_INSTALL_CONFIG
 		$(TARGET_DIR)/etc/lighttpd/conf.d/dirlisting.conf
 	$(INSTALL) -D -m 0644 $(@D)/doc/config/conf.d/mime.conf \
 		$(TARGET_DIR)/etc/lighttpd/conf.d/mime.conf
+	$(INSTALL) -D -m 0644 package/lighttpd/index.html \
+		$(TARGET_DIR)/var/www/index.html
 endef
 
 LIGHTTPD_POST_INSTALL_TARGET_HOOKS += LIGHTTPD_INSTALL_CONFIG

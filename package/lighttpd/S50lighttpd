@@ -11,6 +11,7 @@ CONF_FILE="/etc/$NAME/$NAME.conf"
 
 start() {
 	printf "Starting lighttpd: "
+	chmod 777 /var/log
 	start-stop-daemon -S -q -p $PID_FILE --exec $DAEMON -- -f $CONF_FILE
 	echo "OK"
 }

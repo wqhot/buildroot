@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recovery Web Interface</title>
+    <meta charset="utf-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .menu {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+        .menu-item {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .menu-item:hover {
+            background-color: #45a049;
+        }
+        .upload-form {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Recovery Web Interface</h1>
+        <div class="menu">
+            <a href="/cgi-bin/storage_info.cgi" class="menu-item">存储状态</a>
+            <a href="/cgi-bin/download.cgi" class="menu-item">文件下载</a>
+        </div>
+        <div class="upload-form">
+            <h2>上传镜像文件</h2>
+            <form action="/cgi-bin/upload.cgi" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" required>
+                <input type="submit" value="上传" class="menu-item">
+            </form>
+        </div>
+    </div>
+</body>
+</html> 

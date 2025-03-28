@@ -19,6 +19,7 @@ define MULTIVIDEOPLAYER_INSTALL_TARGET_CMDS
 	$(INSTALL) -D -m 0755 $(@D)/jssRecovery $(TARGET_DIR)/usr/bin/
 	$(INSTALL) -D -m 0755 $(@D)/jssRecovery.desktop $(TARGET_DIR)/usr/share/applications/
 	$(INSTALL) -D -m 0644 $(@D)/2k.parts $(TARGET_DIR)/etc/jssrecovery/templates/
+	$(INSTALL) -D -m 0755 $(@D)/index.html $(TARGET_DIR)/var/www/index.html
 endef
 
 define MULTIVIDEOPLAYER_INSTALL_INIT_SYSV
