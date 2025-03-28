@@ -17,7 +17,7 @@ PATH="/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin"
 
 start_qlauncher()
 {
-	WAYLAND_WAIT=1 /usr/bin/jssRecovery
+	WAYLAND_WAIT=1 /usr/bin/jssServer
 }
 
 stop_qlauncher()
@@ -27,21 +27,20 @@ stop_qlauncher()
 
 case "$1" in
 	start)
-		echo "starting jssRecovery... "
-		chown -R ftp:root /Backup/upload
+		echo "starting jssServer... "
 		start_qlauncher&
 		;;
 	stop)
-		echo -n "stoping jssRecovery... "
+		echo -n "stoping jssServer... "
 		stop_qlauncher
 		echo "done."
 		;;
 	restart|reload)
-		echo -n "stoping jssRecovery... "
+		echo -n "stoping jssServer... "
 		stop_qlauncher && sleep .3
 		echo "done."
 
-		echo "starting jssRecovery... "
+		echo "starting jssServer... "
 		start_qlauncher&
 		;;
 	*)
