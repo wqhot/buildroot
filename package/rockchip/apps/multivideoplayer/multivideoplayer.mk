@@ -14,12 +14,12 @@ MULTIVIDEOPLAYER_LICENSE_FILES = LICENSE
 # TODO: Add install rules in .pro
 define MULTIVIDEOPLAYER_INSTALL_TARGET_CMDS
 	mkdir -p $(TARGET_DIR)/usr/share/applications $(TARGET_DIR)/usr/share/icons
-	mkdir -p $(TARGET_DIR)/etc/jssrecovery/templates
+	mkdir -p $(TARGET_DIR)/Backup/templates
 	$(INSTALL) -D -m 0644 $(@D)/image/icon_jssrec.png $(TARGET_DIR)/usr/share/icons/
 	$(INSTALL) -D -m 0755 $(@D)/jssRecoveryGUI/jssRecovery $(TARGET_DIR)/usr/bin/
 	$(INSTALL) -D -m 0755 $(@D)/jssServer/jssServer $(TARGET_DIR)/usr/bin/
 	$(INSTALL) -D -m 0755 $(@D)/jssRecovery.desktop $(TARGET_DIR)/usr/share/applications/
-	$(INSTALL) -D -m 0644 $(@D)/2k.parts $(TARGET_DIR)/etc/jssrecovery/templates/
+	$(INSTALL) -D -m 0644 $(@D)/2k.parts $(TARGET_DIR)/Backup/templates/2k.parts
 	$(INSTALL) -D -m 0755 $(@D)/index.html $(TARGET_DIR)/var/www/index.html
 endef
 

@@ -22,7 +22,7 @@ start_qlauncher()
 
 stop_qlauncher()
 {
-	killall jssRecovery
+	killall jssServer
 }
 
 case "$1" in
