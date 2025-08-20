@@ -1,0 +1,70 @@
+#include "base/base.config"
+#include "chips/rk3588_aarch64.config"
+#include "font/chinese.config"
+#include "fs/exfat.config"
+#include "fs/ntfs.config"
+#include "fs/vfat.config"
+#include "fs/e2fs.config"
+#include "gpu/gpu.config"
+#include "weston.config"
+#include "qt/qt5.config"
+#include "qt/app.config"
+#include "multimedia/mpp.config"
+#include "multimedia/camera.config"
+#include "multimedia/gst/video.config"
+#include "multimedia/gst/rtsp.config"
+#include "multimedia/gst/camera.config"
+
+BR2_PACKAGE_COREUTILS=y
+BR2_PACKAGE_RSYNC=y
+BR2_PACKAGE_XFSPROGS=y
+BR2_PACKAGE_VSFTPD=y
+
+# NETWORK_MANAGER
+BR2_PACKAGE_NETWORK_MANAGER=y
+BR2_PACKAGE_LIBGCRYPT=y
+BR2_PACKAGE_LIBGPG_ERROR=y
+BR2_PACKAGE_LIBNDP=y
+
+BR2_ROOTFS_DEVICE_CREATION_DYNAMIC_EUDEV=y
+
+# FTP
+BR2_PACKAGE_CURLFTPFS=y
+
+# SSHFS
+BR2_PACKAGE_SSHFS=y
+
+# SAMBA4
+BR2_PACKAGE_SAMBA4=y
+
+# NFS
+BR2_PACKAGE_NFS_UTILS=y
+BR2_PACKAGE_NFS_UTILS_RPC_NFSD=y
+BR2_PACKAGE_NILFS_UTILS=y
+BR2_PACKAGE_LIBTIRPC=y
+BR2_PACKAGE_RPCBIND=y
+
+
+# network
+#BR2_PACKAGE_DHCPCD=y
+#BR2_PACKAGE_DHCPDUMP=y
+#BR2_PACKAGE_DNSMASQ=y
+# BR2_PACKAGE_DROPBEAR is not set
+BR2_PACKAGE_GESFTPSERVER=y
+BR2_PACKAGE_HOSTAPD=y
+BR2_PACKAGE_NMAP=y
+BR2_PACKAGE_NTP=y
+BR2_PACKAGE_NTP_NTPDATE=y
+BR2_PACKAGE_NTP_SNTP=y
+BR2_PACKAGE_OPENSSH=y
+BR2_PACKAGE_PPPD=y
+BR2_PACKAGE_PPPD_FILTER=y
+BR2_PACKAGE_PPPD_RADIUS=y
+BR2_PACKAGE_LIGHTTPD=y
+
+# Firefly
+BR2_TARGET_GENERIC_ROOT_PASSWD="bica1234."
+BR2_PACKAGE_UTIL_LINUX_BINARIES=y
+
+# BR2_ROOTFS_OVERLAY+="board/rockchip/rk3588/kj-overlay/"
+BR2_ROOTFS_OVERLAY+="../velu_mod/"
